@@ -126,6 +126,7 @@ Navbar dynamique selon l’utilisateur connecté
 Messages flash pour confirmer les actions (ajout, modification, suppression)
 
 Structure des entités
+
 Contact
 Propriété	Type	Description
 id	int	Identifiant unique
@@ -136,17 +137,20 @@ adresse	string	Adresse
 ville	string	Ville
 age	int	Âge du contact
 category	Category	Catégorie du contact
+
 Category
 Propriété	Type	Description
 id	int	Identifiant unique
 title	string	Nom de la catégorie
 contacts	Collection	Liste des contacts associés
+
 User
 Propriété	Type	Description
 id	int	Identifiant unique
 email	string	Email utilisateur
 password	string	Mot de passe encodé
 roles	array	Rôles de l’utilisateur
+
 Routes importantes
 Route	Méthode	Description
 /	GET	Page d’accueil / liste des contacts
@@ -173,6 +177,4 @@ Auteurs: Aristide SAGODAN
 
 Projet développé dans le cadre du TP Symfony
 
-Nom : Ton Nom
-
-Email : ton.email@example.com
+Email : aristidesagodan@hotmail.fr
