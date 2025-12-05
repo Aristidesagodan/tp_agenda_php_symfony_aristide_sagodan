@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Modifier un contact</h1>
+
+{# ✔ Message de confirmation #}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+
+<div class="container">
+    {{ form_start(form) }}
+
+    {{ form_row(form.nom) }}
+    {{ form_row(form.prenom) }}
+    {{ form_row(form.telephone) }}
+    {{ form_row(form.adresse) }}
+    {{ form_row(form.ville) }}
+    {{ form_row(form.age) }}
+
+    <button class="btn btn-warning">Modifier</button>
+
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}

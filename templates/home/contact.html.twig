@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    {# ✔ Jumbotron Bootstrap pour un beau bloc d’affichage #}
+<div class="jumbotron">
+  <h1 class="display-4">Détail du contact</h1>
+  <p class="lead">
+      <strong>ID :</strong> {{ contact.id }}<br>
+      <strong>Nom :</strong> {{ contact.nom }}<br>
+      <strong>Prénom :</strong> {{ contact.prenom }}<br>
+      <strong>Téléphone :</strong> {{ contact.telephone }}
+      <strong>Catégorie :</strong> {{ contact.category.title }}
+  </p>
+
+  </p>
+  <hr class="my-4">
+  {# ✔ Bouton retour accueil #}
+  <a class="btn btn-primary btn-lg" href="/" role="button">Retour</a>
+</div>
+
+
+
+
+
+
+<h1>Fiche contact</h1>
+
+<p><strong>Nom :</strong> {{ contact.nom }}</p>
+<p><strong>Prénom :</strong> {{ contact.prenom }}</p>
+<p><strong>Téléphone :</strong> {{ contact.telephone }}</p>
+<p><strong>Adresse :</strong> {{ contact.adresse }}</p>
+<p><strong>Ville :</strong> {{ contact.ville }}</p>
+<p><strong>Âge :</strong> {{ contact.age }} ans</p>
+<p><strong>Catégorie :</strong> {{ contact.category.title }}</p>
+
+
+<a href="/" class="btn btn-primary mt-3">Retour</a>
+{% endblock %}
+
