@@ -208,5 +208,5 @@ Sécurisation d’une application web
 👨‍🎓 Auteur
 
 Projet réalisé dans le cadre du TP Symfony – Agenda
-Étudiant(e) : [Votre nom]
-Année : 2024 - 2025
+Étudiant(e) : SAGODAN ARISTIDE
+Année : 2025 - 2026
