@@ -1,180 +1,212 @@
-Agenda - Symfony Project
-Table des matières
+📒 Projet TP1 – AGENDA (Symfony)
 
-Description
+Ce projet est une application web de gestion de contacts (Agenda) développée avec Symfony, Twig, Doctrine ORM et le module de Sécurité Symfony.
+Il permet de gérer des contacts, des catégories, l’authentification des utilisateurs ainsi que des formulaires d’ajout et de modification.
 
-Technologies utilisées
+🚀 Fonctionnalités
+✅ Gestion des contacts
 
-Installation
+Affichage de la liste des contacts
 
-Configuration
+Affichage du détail d’un contact
 
-Fonctionnalités
+Ajout d’un contact via un formulaire
 
-Structure des entités
+Modification d’un contact
 
-Routes importantes
+Suppression d’un contact
 
-Sécurité et utilisateurs
+Filtrage des contacts ayant plus de 18 ans
 
-Auteurs
+✅ Gestion des catégories
 
-Description
+Création de l’entité Category
 
-Agenda est une application web développée avec Symfony qui permet de gérer des contacts.
-Chaque contact possède des informations telles que le nom, prénom, téléphone, adresse, ville, âge et catégorie (famille, amis, travail).
+Relation OneToMany entre Category et Contact
 
-L’application offre également un système de sécurité complet avec inscription, connexion et gestion des rôles.
+Trois catégories par défaut :
 
-Technologies utilisées
+famille
 
-PHP 8.x
+amis
 
-Symfony 6.x
+travail
+
+Affichage de la catégorie dans le tableau
+
+Sélection de la catégorie dans les formulaires
+
+✅ Sécurité
+
+Inscription d’un utilisateur (ROLE_USER par défaut)
+
+Connexion / Déconnexion
+
+Gestion des affichages selon l’état de connexion :
+
+Utilisateur connecté :
+
+Boutons Ajouter, Modifier, Supprimer
+
+Message : "Vous êtes connecté en tant que email@email.com
+"
+
+Lien Se déconnecter
+
+Utilisateur non connecté :
+
+Liens Se connecter et S’inscrire
+
+Aucun accès aux boutons Modifier/Supprimer
+
+✅ Validation des formulaires
+
+Nom : minimum 2 caractères
+
+Prénom : minimum 2 caractères
+
+Téléphone : champ obligatoire
+
+Âge : entre 15 et 120 ans
+
+🛠️ Technologies utilisées
+
+PHP 8+
+
+Symfony 6+
+
+Twig
 
 Doctrine ORM
 
-Twig (templating)
+Bootstrap 5
 
-Bootstrap 4/5 (frontend)
+MySQL / phpMyAdmin
 
-MySQL (base de données)
+📁 Structure du projet
+/src
+ ├── Controller
+ ├── Entity
+ ├── Form
+ ├── Repository
+/templates
+ ├── base.html.twig
+ ├── home.html.twig
+ ├── contact.html.twig
+ ├── ajouter.html.twig
+ ├── modifier.html.twig
+/config
+/migrations
+/public
+.env
 
-Installation
-
-Cloner le projet :
-
-git clone <repo-url>
+⚙️ Installation du projet
+1. Cloner le projet
+git clone https://github.com/votre-repo/agenda.git
 cd agenda
 
-
-Installer les dépendances :
-
+2. Installer les dépendances
 composer install
 
+3. Configurer la base de données
 
-Configurer la base de données dans .env :
+Dans le fichier .env :
 
-DATABASE_URL="mysql://username:password@127.0.0.1:3306/agenda?serverVersion=8.0"
+DATABASE_URL="mysql://root:@127.0.0.1:3306/agenda"
 
-
-Créer la base de données et les tables :
-
+4. Créer la base de données
 php bin/console doctrine:database:create
+
+5. Exécuter les migrations
+php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 
+6. Lancer le serveur
+symfony server:start
 
-Lancer le serveur de développement :
+🧱 Entités
+🧍 Contact
 
-symfony serve
-# ou
-php bin/console server:run
+id
 
-Configuration
+nom
 
-Fichier principal de configuration : config/packages/security.yaml
+prenom
 
-Les utilisateurs sont gérés via l’entité User avec email et mot de passe encodé.
+telephone
 
-La sécurité protège les routes /contact/* : ajout, modification, suppression nécessitent un utilisateur connecté.
+adresse
 
-Fonctionnalités
-Gestion des contacts
+ville
 
-Ajouter un contact
+age
 
-Modifier un contact
+category (relation ManyToOne)
 
-Supprimer un contact
+🗂️ Category
 
-Afficher la liste des contacts
+id
 
-Afficher les détails d’un contact
+title
 
-Filtrer les contacts par âge (>18 ans)
+contacts (relation OneToMany)
 
-Associer un contact à une catégorie (famille, amis, travail)
+👤 User
 
-Formulaires
+id
 
-Formulaire pour ajouter et modifier un contact avec validation :
+email
 
-Nom / prénom ≥ 2 caractères
+password
 
-Téléphone obligatoire
+roles
 
-Âge entre 15 et 120 ans
+🖥️ Pages principales
+Page	Description
+/	Page d’accueil – Liste des contacts
+/contact/{id}	Détails d’un contact
+/ajouter	Ajouter un contact
+/modifier/{id}	Modifier un contact
+/register	Inscription
+/login	Connexion
+🔐 Règles de sécurité
 
-Catégorie obligatoire
+Accès restreint aux fonctionnalités Ajouter / Modifier / Supprimer
 
-Sécurité
+Affichage dynamique du menu selon l’état de connexion
 
-Inscription d’utilisateurs avec rôle par défaut ROLE_USER
+Déconnexion redirige vers l’accueil
 
-Connexion et déconnexion
+🧪 Exemples de fonctionnalités spécifiques
 
-Protection des routes selon les rôles
+Bouton Modifier :
 
-Gestion des boutons et liens selon l’état de connexion (Ajouter, Modifier, Supprimer)
+Modifie le numéro de téléphone par "New number !"
 
-UI / UX
+Bouton Supprimer :
 
-Interface responsive avec Bootstrap 4/5
+Supprime le contact de la base de données
 
-Navbar dynamique selon l’utilisateur connecté
+Affichage uniquement des contacts > 18 ans
 
-Messages flash pour confirmer les actions (ajout, modification, suppression)
+📌 Objectifs pédagogiques
 
-Structure des entités
+Comprendre l’architecture MVC de Symfony
 
-Contact
-Propriété	Type	Description
-id	int	Identifiant unique
-nom	string	Nom du contact
-prenom	string	Prénom du contact
-telephone	string	Numéro de téléphone
-adresse	string	Adresse
-ville	string	Ville
-age	int	Âge du contact
-category	Category	Catégorie du contact
+Manipulation de Twig
 
-Category
-Propriété	Type	Description
-id	int	Identifiant unique
-title	string	Nom de la catégorie
-contacts	Collection	Liste des contacts associés
+Utilisation de Doctrine ORM
 
-User
-Propriété	Type	Description
-id	int	Identifiant unique
-email	string	Email utilisateur
-password	string	Mot de passe encodé
-roles	array	Rôles de l’utilisateur
+Création de formulaires
 
-Routes importantes
-Route	Méthode	Description
-/	GET	Page d’accueil / liste des contacts
-/contact/add	GET, POST	Ajouter un contact
-/contact/{id}	GET	Afficher les détails d’un contact
-/contact/{id}/edit	GET, POST	Modifier un contact
-/contact/{id}/delete	POST	Supprimer un contact
-/login	GET, POST	Page de connexion
-/register	GET, POST	Page d’inscription
-/logout	GET	Déconnexion
-Sécurité et utilisateurs
+Mise en place d’un système d’authentification
 
-Les utilisateurs doivent être connectés pour :
+Gestion des relations entre entités
 
-Ajouter, modifier, supprimer des contacts
+Sécurisation d’une application web
 
-Les boutons “Modifier” et “Supprimer” ne s’affichent que pour les utilisateurs connectés.
+👨‍🎓 Auteur
 
-Les boutons “Se connecter” et “S’inscrire” disparaissent quand l’utilisateur est connecté.
-
-L’utilisateur connecté voit son email en haut de la page avec un lien pour se déconnecter.
-
-Auteurs: Aristide SAGODAN
-
-Projet développé dans le cadre du TP Symfony
-
-Email : aristidesagodan@hotmail.fr
+Projet réalisé dans le cadre du TP Symfony – Agenda
+Étudiant(e) : [Votre nom]
+Année : 2024 - 2025
